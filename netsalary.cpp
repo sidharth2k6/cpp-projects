@@ -2,8 +2,8 @@
 using namespace std;
 
 int main(){
-    double total_salary;
-    double ta, da, hra, net_salary, pf, cash_in_hand;
+    
+    double total_salary, ta, da, hra, net_salary, pf, cash_in_hand;
 
     cout << "Enter your Total salary: ";
     cin >> total_salary;
