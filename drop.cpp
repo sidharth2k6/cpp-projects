@@ -40,27 +40,29 @@ public:
         srand(time(NULL));
     }
 
-    // void draw(){
-    //     cout << "\033[H" << "\033[?25l";
+    void draw1(){
+        // cout << "\033[H" << "\033[?25l";
+        cout << "\033[H";
 
-    //     for(int i = 0; i < slider.height; i++){
-    //         for(int j = 0; j < slider.width; j++){
-    //             if(j == 0 || j == 19){
-    //                 cout << " |";
-    //             }
-    //             else if(i == slider.y && j == slider.x) cout << "--";
-    //             else cout << "  ";
-    //         }
-    //         cout << endl;
-    //     }
-    // }
+        for(int i = 0; i < slider.height; i++){
+            cout << "\033[1E" << "\033[2C";
+            for(int j = 0; j < slider.width; j++){
+                // if(j == 0 || j == 19){
+                //     cout << " |";
+                // }
+                if(i == slider.y && j == slider.x) cout << "__";
+                else cout << "oo";
+            }
+            // cout << endl;
+        }
+    }
     void draw(){
         system("cls");
         // cout << "\033[?25l";
         cout << "\033[2m"; //dim colour
 
         // upper border
-        for (int i = 0; i < slider.width + 2; i++) cout << " #";
+        for (int i = 0; i < slider.width + 2; i++) cout << "//";
         cout << endl;
 
         // inside (main area)
@@ -68,16 +70,15 @@ public:
 
             for (int j = 0; j < slider.width + 2; j++) {
                 if (j == 0 || j == slider.width + 1 ) {
-                    cout << " #"; // left/right border
+                    cout << "//"; // left/right border
                 }
-                else if(j == food.x) cout << " v";
                 else cout << "  ";
             }
             cout << endl;
         }
 
         // bottom border
-        for (int i = 0; i < slider.width + 2; i++) cout << " #";
+        for (int i = 0; i < slider.width + 2; i++) cout << "//";
 
         cout << "\033[0m";
     }
@@ -86,10 +87,10 @@ public:
         if(_kbhit()){
             switch(tolower(_getch())){
                 case 'a':
-                    if(!(slider.x < 2)) slider.x += -1;
+                    if(!(slider.x < 1)) slider.x += -1;
                     break;
                 case 'd':
-                    if(!(slider.x > slider.width - 3)) slider.x += 1;
+                    if(!(slider.x > slider.width - 2)) slider.x += 1;
                     break;
                 case 'x':
                     exit(0);
@@ -100,11 +101,12 @@ public:
 
 int main(){
     Game g;
-    // while(1){
-        g.draw();
-        cout << "\033[H" << "\033[1E" << "\033[2C";
-        getchar();
+    g.draw();
+    while(1){
+        g.draw1();
+        // cout << "\033[H" << "\033[1E" << "\033[2C";
+        // getchar();
         g.input();
-    // }
+    }
     return 0;
 }
