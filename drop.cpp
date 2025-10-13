@@ -51,7 +51,7 @@ public:
                 //     cout << " |";
                 // }
                 if(i == slider.y && j == slider.x) cout << "__";
-                else cout << "oo";
+                else cout << "  ";
             }
             // cout << endl;
         }
